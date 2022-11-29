@@ -1,0 +1,90 @@
+--admin Table
+
+Create table Admin(
+Aid numeric primary key,
+Aname varchar(20) not null,
+AEmail varchar(20) not null,
+APhone_Number numeric not null unique,
+Password varchar(20) not null
+);
+
+-------------------------------------------------------
+
+--Customers Table
+
+Create table Customer(
+Cid numeric primary key,
+Location varchar(20) not null,
+CFirstname varchar(20) not null,
+CSurname varchar(20),
+CEmail varchar(30) not null unique,
+CMobile numeric not null unique,
+Password varchar(30) not null,
+Confirm_password varchar(30) not null
+);
+
+--------------------------------------------------------
+--Fooditem Table
+
+Create table food_items (
+Foodid numeric primary key,
+Foodname varchar(50) not null,
+Price numeric not null
+);
+
+--------------------------------------------------------
+--Cart Table:
+
+Create table Cart(
+Cardid numeric primary key,
+Fid numeric references food_items(Foodid),
+FQuantity numeric not null,
+Price numeric not null,
+Coupon varchar(7) unique
+);
+
+-------------------------------------------------------
+--Order Table:
+
+Create table Order_info(
+Oid numeric not null primary key,
+Fid numeric references food_items(Foodid),
+Bill_amount numeric not null
+);
+
+
+--------------------------------------------------------
+--Pay Table:
+
+Create table Pay(
+Pnum numeric primary key,
+PCardName varchar(20) not null,
+Pcvv numeric not null
+);
+
+--------------------------------------------------------
+--Event Table:
+
+Create table Event(
+Evid numeric primary key,
+EvSdate date not null,
+EvEdate date not null
+);
+
+--------------------------------------------------------
+--Coupon Table:
+
+Create table Coupon(
+CoId numeric primary key,
+CoName varchar(30) not null,
+CoDiscount numeric not null,
+CoSdate date varchar not null,
+CoEdate date varchar not null,
+Cocode varchar(10) not null
+);
+
+insert into Coupon values(01,'hollidappy',30,"28-11-2022","21-12-2022",'21qr5d');
+insert into Coupon values(02,'standard_Coupon',40,"31-11-2022,"22-12-2022",'715sed');
+insert into Coupon values(03,'deal_day_Coupon',60,"1-12-2022","23-12-2022",'563rgm');
+insert into Coupon values(04,'southern_saver',75,"2-12-2022","25-12-2022",'786uyf');
+insert into Coupon values(05,'lucky_deals',20,"5-12-2022","27-12-2022",'546edc');
